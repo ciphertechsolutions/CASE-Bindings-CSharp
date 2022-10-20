@@ -1,0 +1,15 @@
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX sh: <http://www.w3.org/ns/shacl#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX observable: <https://ontology.unifiedcyberontology.org/uco/observable/>
+
+SELECT ?class ?subClassOf ?comment
+WHERE
+{
+	?class a owl:Class.
+	?shape a sh:NodeShape ;
+		sh:targetClass ?class .
+	OPTIONAL{?class rdfs:subClassOf ?subClassOf.}
+	OPTIONAL{?class rdfs:comment ?comment.}
+}

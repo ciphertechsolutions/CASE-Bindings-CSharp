@@ -1,0 +1,172 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+using System;
+using VDS.RDF;
+
+namespace CT.CASE.Bindings {
+
+	public class Thing
+	{
+		internal readonly DataSet DataSet;
+		internal readonly INode Identifier;
+
+		internal protected Thing(DataSet dataSet, INode identifier) {
+			DataSet = dataSet;
+			Identifier = identifier;
+		}
+
+		/// <summary>
+		/// Returns the <c>Uri</c> that identifies this <c>Thing</c>,
+		/// or <c>null</c> if this is a blank node.
+		/// </summary>
+		public Uri IdentifierUri() {
+			var uriNode = Identifier as IUriNode;
+			if(uriNode == null) {
+				return null;
+			} else {
+				return uriNode.Uri;
+			}
+		}
+
+		internal INode ToNode(Graph graph) {
+			return Identifier;
+		}
+	}
+
+	public class Thread
+	{
+		private Thread() {}
+
+		internal INode ToNode(Graph graph) {
+			throw new System.NotImplementedException();
+		}
+	}
+
+<#
+	foreach(var cls in Schema.Classes) {
+#>
+	/// <summary>
+	/// <#= cls.Comment ?? "" #>
+	/// </summary>
+	public class <#= cls.Iri.Suffix.ToIdentifier() #>: <#= cls.ParentClassIdentifier #>
+	{
+		#pragma warning disable CS0108 // '...' hides inherited member '...'.
+		internal static readonly Uri CLASS_IRI = UriFactory.Create("<#= cls.Iri #>");
+		#pragma warning restore CS0108
+
+		internal <#= cls.Iri.Suffix.ToIdentifier() #>(DataSet dataSet, INode identifier): base(dataSet, identifier) {
+		}
+	} // class <#= cls.Iri.Suffix.ToIdentifier() #>
+<#
+	} // foreach(var cls in Schema.Classes)
+#>
+
+	public partial class DataSet {
+<#
+		foreach(var cls in Schema.Classes) {
+#>
+		/// <summary>
+		/// Adds <c>a &lt;<#= cls.Iri #>&gt;</c> to the graph with the given properties.
+		/// </summary>
+		public <#= cls.Iri.Suffix.ToIdentifier() #> Create<#= cls.Iri.Suffix.ToIdentifier() #>(
+			Uri rdfIdentifier
+<#
+			foreach(var prop in this.AllFieldsOnClass(cls).Where((p) => !p.HasParamDefault)) {
+#>
+			, <#= prop.CsType() #> <#= prop.LocalIdentifier() #>
+<#
+			}
+			foreach(var prop in this.AllFieldsOnClass(cls).Where((p) => p.HasParamDefault)) {
+#>
+			, <#= prop.CsType() #> <#= prop.LocalIdentifier() #> = null
+<#
+			}
+#>
+		) {
+<#
+			foreach(var prop in this.AllFieldsOnClass(cls)) {
+				if(prop.NeedsNullCheck()) {
+#>
+					if(<#= prop.LocalIdentifier() #> == null)
+						throw new ArgumentNullException();
+<#
+				}
+			}
+#>
+			var proxy = _Create(rdfIdentifier, <#= cls.Iri.Suffix.ToIdentifier() #>.CLASS_IRI, (ds, id) => new <#= cls.Iri.Suffix.ToIdentifier() #>(ds, id));
+<#
+			foreach(var prop in this.AllFieldsOnClass(cls)) {
+				if(prop.NeedsEnumeration()) {
+#>
+					foreach(var _rdf_value in <#= prop.LocalIdentifier() #> ?? System.Linq.Enumerable.Empty<<#= prop.ElementType() #>>()) {
+						Marshall.AddTriple(Graph,
+							proxy.Identifier,
+							Graph.CreateUriNode(UriFactory.Create("<#= prop.Path #>")),
+							_rdf_value.ToNode(Graph));
+					}
+<#
+				} else {
+#>
+					Marshall.AddTriple(Graph,
+						proxy.Identifier,
+						Graph.CreateUriNode(UriFactory.Create("<#= prop.Path #>")),
+						<#= prop.LocalIdentifier() #><# if (prop.IsNullable()) {#>?<# } #>.ToNode(Graph));
+<#
+				}
+			} // foreach(var prop in cls.Fields)
+#>
+			return proxy;
+		} // Create<#= cls.Iri.Suffix.ToIdentifier() #>(...)
+<#
+		} // foreach(var cls in Schema.Classes)
+#>
+	}
+
+<#
+	foreach(var vocab in Schema.OpenVocabularies) {
+#>
+	public sealed class <#= vocab.Iri.Suffix.ToIdentifier() #> {
+<#
+		foreach(var member in vocab.Members) {
+#>
+		public static readonly <#= vocab.Iri.Suffix.ToIdentifier() #> <#= member.LexicalValue.ToIdentifier().ToPascalCase() #> = new <#= vocab.Iri.Suffix.ToIdentifier() #>("<#= member.LexicalValue #>", true);
+<#
+		} // foreach(var member in vocab.Members)
+#>
+
+		internal static readonly Uri TYPE_URI = UriFactory.Create("<#= vocab.Iri #>");
+		internal readonly string Lexical;
+		internal readonly bool IsWellKnown;
+		private <#= vocab.Iri.Suffix.ToIdentifier() #>(string lexical, bool isWellKnown) {
+			Lexical = lexical;
+			IsWellKnown = isWellKnown;
+		}
+
+		public <#= vocab.Iri.Suffix.ToIdentifier() #>(string lexicalValue) : this(lexicalValue, false) {
+			if(lexicalValue == null)
+				throw new ArgumentNullException("lexicalValue");
+		}
+	} // enum <#= vocab.Iri.Suffix.ToIdentifier() #>
+<#
+	} // foreach(var vocab in Schema.OpenVocabularies)
+#>
+
+	internal static class Extensions {
+<#
+		foreach(var vocab in Schema.OpenVocabularies) {
+#>
+		internal static INode ToNode(this <#= vocab.Iri.Suffix.ToIdentifier() #> value, Graph graph) {
+			if(value == null)
+				return null;
+			return graph.CreateLiteralNode(value.Lexical, value.IsWellKnown
+				? <#= vocab.Iri.Suffix.ToIdentifier() #>.TYPE_URI
+				: UriFactory.Create("http://www.w3.org/2001/XMLSchema#string"));
+		}
+<#
+		} // foreach(var vocab in Schema.OpenVocabularies)
+#>
+	}
+}

@@ -1,7 +1,33 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageID>CipherTech.CASE.Bindings</PackageID>
+    <Version>0.1.0</Version>
+    <PackageTitle>C# CASE Bindings</PackageTitle>
+    <Authors>Cipher Tech Solutions Inc</Authors>
+    <LicenseUrl>https://github.com/ciphertechsolutions/CASE-Bindings-CSharp/blob/main/LICENSE</LicenseUrl>
+    <Description>A library to utilize C# classes to generate output to the CASE Cyber Ontology.</Description>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/ciphertechsolutions/CASE-Bindings-CSharp</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>CASE, UCO, CDO</PackageTags>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="dotNetRdf" Version="2.7.5" />
+  </ItemGroup>
 
 </Project>

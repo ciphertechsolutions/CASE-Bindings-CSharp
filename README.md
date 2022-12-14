@@ -60,7 +60,8 @@ RDF primitive types -- those in the `xsd:` namespace -- map to C# types accordin
 | `xsd:decimal`            | `decimal`             |
 | `xsd:duration`           | `System.TimeSpan`     |
 | `xsd:hexBinary`          | `byte[]`              |
-| `xsd:integer`            | `int`                 |
+| `base64binary`           | `byte[]`              |
+| `xsd:integer`            | `long`                |
 | `xsd:nonNegativeInteger` | `NonNegativeInteger`¹ |
 | `xsd:positiveInteger`    | `PositiveInteger`¹    |
 | `xsd:string`             | `string`              |
@@ -105,10 +106,9 @@ following properties.
 
 | RDF class                                   | Property path                            |
 |---------------------------------------------|------------------------------------------|
-| `action:ActionLifecycle`                    | `action:ActionStatus`                    |
+| `action:ActionLifecycle`                    | `action:actionStatus`                    |
 | `observable:ExtractedString`                | `observable:byteStringValue`             |
 | `observable:TCPConnectionFacet`             | `observable:destinationFlags`            |
-| `observable:WirelessNetworkConnectionFacet` | `observable:wirelessNetworkSecurityMode` |
 | `observable:WirelessNetworkConnectionFacet` | `observable:wirelessNetworkSecurityMode` |
 
 **The `Thread` class** is intentionally unconstructable in this version of the bindings. It maps to the RDF class

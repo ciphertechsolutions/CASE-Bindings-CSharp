@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "CT.CASE.Generator": {
+      "commandName": "Project",
+      "commandLineArgs": "Outfile.cs"
+    }
+  }
+}

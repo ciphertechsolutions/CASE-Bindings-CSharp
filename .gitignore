@@ -396,6 +396,10 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+.idea/
+
+# VSCode
+.vscode/
 
 # Custom build artifacts
 CT.CASE.Generator/BindingsTemplate.cs

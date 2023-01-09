@@ -30,16 +30,16 @@ namespace CT.CASE.Generator.Types
                 };
             }
         }
-
+        
         private static List<OpenVocabulary> GetVocabularies(Graph graph)
         {
-            SparqlQueryParser parser = new SparqlQueryParser();
+            var parser = new SparqlQueryParser();
 
-            SparqlQuery enumQuery = parser.ParseFromString(Resources.EnumQuery);
-            SparqlResultSet caseEnums = (SparqlResultSet)graph.ExecuteQuery(enumQuery);
+            var enumQuery = parser.ParseFromString(Resources.EnumQuery);
+            var caseEnums = (SparqlResultSet) graph.ExecuteQuery(enumQuery);
             var vocabs = caseEnums.Results.GroupBy(r => r["alias"]).Select(y => y.First());
 
-            List<OpenVocabulary> parsedVocabs = new List<OpenVocabulary>();
+            var parsedVocabs = new List<OpenVocabulary>();
             foreach (var vocab in vocabs)
             {
                 var vocabMembers = caseEnums.Results

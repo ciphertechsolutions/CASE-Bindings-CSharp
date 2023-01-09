@@ -16,9 +16,7 @@ namespace CT.CASE.Generator
 
         internal Iri(string fullIri)
         {
-            if (fullIri == null)
-                throw new ArgumentNullException("fullIri");
-            FullValue = fullIri;
+            FullValue = fullIri ?? throw new ArgumentNullException("fullIri");
             var index = FullValue.LastIndexOfAny(PUNCT);
             Prefix = FullValue.Substring(0, index + 1);
             Suffix = FullValue.Substring(index + 1);

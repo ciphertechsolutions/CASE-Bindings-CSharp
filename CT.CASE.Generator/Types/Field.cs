@@ -12,7 +12,7 @@ namespace CT.CASE.Generator.Types
 
         public Cardinality Cardinality { get; private set; }
 
-        private static readonly Dictionary<string, string> XSD_TYPE_EXPRESSIONS = new Dictionary<string, string>
+        private static readonly Dictionary<string, string> XSD_TYPE_EXPRESSIONS = new()
         {
             ["string"] = "string",
             ["unsignedInt"] = "uint",
@@ -20,8 +20,9 @@ namespace CT.CASE.Generator.Types
             ["dateTime"] = "System.DateTime",
             ["nonNegativeInteger"] = "NonNegativeInteger",
             ["boolean"] = "bool",
-            ["integer"] = "int",
+            ["integer"] = "long",
             ["hexBinary"] = "byte[]",
+            ["base64binary"] = "byte[]",
             ["decimal"] = "decimal",
             ["anyURI"] = "System.Uri",
             ["byte"] = "sbyte",

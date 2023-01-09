@@ -95,6 +95,16 @@ namespace CT.CASE.Bindings
             return value?.ToNode(graph);
         }
 
+        internal static INode ToNode(this long value, Graph graph)
+        {
+            return graph.CreateLiteralNode(value.ToString(), UriFactory.Create("http://www.w3.org/2001/XMLSchema#integer"));
+        }
+
+        internal static INode ToNode(this long? value, Graph graph)
+        {
+            return value?.ToNode(graph);
+        }
+
         internal static INode ToNode(this DateTime value, Graph graph)
         {
             return new DateTimeNode(graph, value);

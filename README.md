@@ -52,7 +52,7 @@ Action authAction = ds.CreateAction(null, result: new UcoObject[] { auth });
 RDF primitive types -- those in the `xsd:` namespace -- map to C# types according to the following table.
 
 | RDF type                 | C# type               |
-|--------------------------|-----------------------|
+| ------------------------ | --------------------- |
 | `xsd:anyURI`             | `System.Uri`          |
 | `xsd:boolean`            | `bool`                |
 | `xsd:byte`               | `sbyte`               |
@@ -60,7 +60,7 @@ RDF primitive types -- those in the `xsd:` namespace -- map to C# types accordin
 | `xsd:decimal`            | `decimal`             |
 | `xsd:duration`           | `System.TimeSpan`     |
 | `xsd:hexBinary`          | `byte[]`              |
-| `base64binary`           | `byte[]`              |
+| `xsd:base64binary`       | `byte[]`              |
 | `xsd:integer`            | `long`                |
 | `xsd:nonNegativeInteger` | `NonNegativeInteger`¹ |
 | `xsd:positiveInteger`    | `PositiveInteger`¹    |

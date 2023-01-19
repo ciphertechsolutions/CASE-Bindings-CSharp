@@ -1,7 +1,6 @@
 ﻿using CT.CASE.Bindings;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Collections;
 using System.Linq;
 using VDS.RDF;
 
@@ -248,7 +247,7 @@ namespace CT.CASE.Tests
         }
 
         [TestMethod]
-        public void XsdIntegerMapsToInt()
+        public void XsdIntegerMapsToLong()
         {
             var ds = new DataSet();
             var thing = ds.CreateAlternateDataStreamFacet(UriFactory.Create("http://test.example/x"), size: 3);

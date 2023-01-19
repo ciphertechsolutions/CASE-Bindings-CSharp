@@ -1,6 +1,8 @@
 # CASE Bindings for C#
 
-Generated bindings for version 1.0.0 of the [CASE ontology](https://caseontology.org/index.html).
+![Nuget](https://img.shields.io/nuget/v/CipherTech.CASE.Bindings)
+
+Generated bindings for version 1.0.0 of the [CASE Ontology](https://caseontology.org/index.html).
 
 These bindings are write-only: they support creating a CASE-compliant RDF graph from scratch, but not editing or
 inspecting existing graphs.
@@ -52,7 +54,7 @@ Action authAction = ds.CreateAction(null, result: new UcoObject[] { auth });
 RDF primitive types -- those in the `xsd:` namespace -- map to C# types according to the following table.
 
 | RDF type                 | C# type               |
-|--------------------------|-----------------------|
+| ------------------------ | --------------------- |
 | `xsd:anyURI`             | `System.Uri`          |
 | `xsd:boolean`            | `bool`                |
 | `xsd:byte`               | `sbyte`               |
@@ -60,7 +62,8 @@ RDF primitive types -- those in the `xsd:` namespace -- map to C# types accordin
 | `xsd:decimal`            | `decimal`             |
 | `xsd:duration`           | `System.TimeSpan`     |
 | `xsd:hexBinary`          | `byte[]`              |
-| `xsd:integer`            | `int`                 |
+| `xsd:base64binary`       | `byte[]`              |
+| `xsd:integer`            | `long`                |
 | `xsd:nonNegativeInteger` | `NonNegativeInteger`¹ |
 | `xsd:positiveInteger`    | `PositiveInteger`¹    |
 | `xsd:string`             | `string`              |
@@ -105,10 +108,9 @@ following properties.
 
 | RDF class                                   | Property path                            |
 |---------------------------------------------|------------------------------------------|
-| `action:ActionLifecycle`                    | `action:ActionStatus`                    |
+| `action:ActionLifecycle`                    | `action:actionStatus`                    |
 | `observable:ExtractedString`                | `observable:byteStringValue`             |
 | `observable:TCPConnectionFacet`             | `observable:destinationFlags`            |
-| `observable:WirelessNetworkConnectionFacet` | `observable:wirelessNetworkSecurityMode` |
 | `observable:WirelessNetworkConnectionFacet` | `observable:wirelessNetworkSecurityMode` |
 
 **The `Thread` class** is intentionally unconstructable in this version of the bindings. It maps to the RDF class

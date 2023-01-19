@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageID>CipherTech.CASE.Bindings</PackageID>
-    <Version>0.1.0</Version>
+    <Version>0.2.0</Version>
     <PackageTitle>C# CASE Bindings</PackageTitle>
     <Authors>Cipher Tech Solutions Inc</Authors>
     <LicenseUrl>https://github.com/ciphertechsolutions/CASE-Bindings-CSharp/blob/main/LICENSE</LicenseUrl>
@@ -13,6 +13,8 @@
     <RepositoryType>git</RepositoryType>
     <PackageTags>CASE, UCO, CDO</PackageTags>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <Title>.NET CASE Bindings</Title>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>

@@ -110,14 +110,12 @@ new VDS.RDF.Writing.CompressingTurtleWriter().Save(rdfGraph, myIoWriter);
 
 ## Known limitations
 
-**Properties with no declared target type** are omitted from the bindings. As of version 1.0.0, this only affects the
+**Properties with no declared target type** are omitted from the bindings. As of CASE version 1.1.0, this only affects the
 following properties.
 
 | RDF class                                   | Property path                            |
 |---------------------------------------------|------------------------------------------|
 | `action:ActionLifecycle`                    | `action:actionStatus`                    |
-| `observable:ExtractedString`                | `observable:byteStringValue`             |
-| `observable:TCPConnectionFacet`             | `observable:destinationFlags`            |
 | `observable:WirelessNetworkConnectionFacet` | `observable:wirelessNetworkSecurityMode` |
 
 **The `Thread` class** is intentionally unconstructable in this version of the bindings. It maps to the RDF class

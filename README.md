@@ -116,8 +116,6 @@ following properties.
 | RDF class                                   | Property path                            |
 |---------------------------------------------|------------------------------------------|
 | `action:ActionLifecycle`                    | `action:actionStatus`                    |
-| `observable:ExtractedString`                | `observable:byteStringValue`             |
-| `observable:TCPConnectionFacet`             | `observable:destinationFlags`            |
 | `observable:WirelessNetworkConnectionFacet` | `observable:wirelessNetworkSecurityMode` |
 
 **The `Thread` class** is intentionally unconstructable in this version of the bindings. It maps to the RDF class

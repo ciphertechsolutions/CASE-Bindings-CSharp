@@ -22,7 +22,7 @@ namespace CT.CASE.Generator.Types
             ["boolean"] = "bool",
             ["integer"] = "long",
             ["hexBinary"] = "byte[]",
-            ["base64binary"] = "byte[]",
+            ["base64Binary"] = "byte[]",
             ["decimal"] = "decimal",
             ["anyURI"] = "System.Uri",
             ["byte"] = "sbyte",

@@ -61,17 +61,17 @@ namespace CT.CASE.Generator.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to # imports: http://purl.org/co
-        ///# imports: https://ontology.caseontology.org/case/investigation/1.1.0
-        ///# imports: https://ontology.caseontology.org/case/vocabulary/1.1.0
-        ///# imports: https://ontology.unifiedcyberontology.org/co/1.1.0
-        ///# imports: https://ontology.unifiedcyberontology.org/owl/1.1.0
-        ///# imports: https://ontology.unifiedcyberontology.org/uco/action/1.1.0
-        ///# imports: https://ontology.unifiedcyberontology.org/uco/analysis/1.1.0
+        ///# imports: https://ontology.caseontology.org/case/investigation/1.2.0
+        ///# imports: https://ontology.caseontology.org/case/vocabulary/1.2.0
+        ///# imports: https://ontology.unifiedcyberontology.org/co/1.2.0
+        ///# imports: https://ontology.unifiedcyberontology.org/owl/1.2.0
+        ///# imports: https://ontology.unifiedcyberontology.org/uco/action/1.2.0
+        ///# imports: https://ontology.unifiedcyberontology.org/uco/analysis/1.2.0
         ///# imports: https://ontology.unifiedcyberontology.org/uco/configuration/ [rest of string was truncated]&quot;;.
         /// </summary>
-        internal static string Case_1_1_0 {
+        internal static string Case_1_2_0 {
             get {
-                return ResourceManager.GetString("Case_1_1_0", resourceCulture);
+                return ResourceManager.GetString("Case_1_2_0", resourceCulture);
             }
         }
         

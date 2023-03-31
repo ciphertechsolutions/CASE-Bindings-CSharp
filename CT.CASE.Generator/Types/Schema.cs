@@ -22,7 +22,7 @@ namespace CT.CASE.Generator.Types
         {
             using (var graph = new Graph())
             {
-                new TurtleParser().Load(graph, new StringReader(Resources.Case_1_1_0));
+                new TurtleParser().Load(graph, new StringReader(Resources.Case_1_2_0));
                 return new Schema
                 {
                     _Classes = GetClasses(graph),

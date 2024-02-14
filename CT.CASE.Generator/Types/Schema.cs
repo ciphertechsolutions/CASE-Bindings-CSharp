@@ -100,6 +100,13 @@ namespace CT.CASE.Generator.Types
                     parentClassIri = null;
                 }
 
+                // If any parent class contains "_:autos", set it to be an owl:Thing
+                // {http://www.w3.org/2002/07/owl#Thing}
+                if (parentClassIri.ToString().Contains("_:autos"))
+                {
+                    parentClassIri = new Iri("http://www.w3.org/2002/07/owl#Thing");
+                }
+
                 string comment = caseClass.HasValue("comment") ? ((ILiteralNode)caseClass["comment"]).Value : null;
 
                 parsedClasses.Add(

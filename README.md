@@ -2,7 +2,7 @@
 
 [![Nuget](https://img.shields.io/nuget/v/CipherTech.CASE.Bindings?label=NuGet)](https://www.nuget.org/packages/CipherTech.CASE.Bindings)
 
-Generated bindings for version 1.2.0 of the [CASE Ontology](https://caseontology.org/index.html).
+Generated bindings for version 1.3.0 of the [CASE Ontology](https://caseontology.org/index.html).
 
 These bindings are write-only: they support creating a CASE-compliant RDF graph from scratch, but not editing or
 inspecting existing graphs.
@@ -103,15 +103,16 @@ new VDS.RDF.Writing.CompressingTurtleWriter().Save(rdfGraph, myIoWriter);
 
 ### Supported Versions
 | Bindings Version | CASE Version | .NET Version    |
-|------------------|--------------|-----------------|
+| ---------------- | ------------ | --------------- |
 | 0.1.0            | 1.0.0        | Framework 4.7.2 |
 | 0.2.0            | 1.0.0        | Standard 2.0    |
 | 0.3.0            | 1.1.0        | Standard 2.0    |
-| 0.4.0 (latest)   | 1.2.0        | Standard 2.0    |
- 
+| 0.4.0            | 1.2.0        | Standard 2.0    |
+| 0.5.0 (latest)   | 1.3.0        | Standard 2.0    |
+
 ## Known limitations
 
-**Properties with no declared target type** are omitted from the bindings. As of CASE version 1.2.0, this only affects the
+**Properties with no declared target type** are omitted from the bindings. As of CASE version 1.3.0, this only affects the
 following properties.
 
 | RDF class                                   | Property path                            |

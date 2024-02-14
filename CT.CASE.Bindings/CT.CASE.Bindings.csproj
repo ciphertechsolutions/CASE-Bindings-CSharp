@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageID>CipherTech.CASE.Bindings</PackageID>
-    <Version>0.5.0</Version>
+    <Version>0.5.1</Version>
     <PackageTitle>C# CASE Bindings</PackageTitle>
     <Authors>Cipher Tech Solutions Inc</Authors>
     <LicenseUrl>https://github.com/ciphertechsolutions/CASE-Bindings-CSharp/blob/main/LICENSE</LicenseUrl>

@@ -22,7 +22,7 @@ namespace CT.CASE.Generator.Types
         {
             using (var graph = new Graph())
             {
-                new TurtleParser().Load(graph, new StringReader(Resources.Case_1_2_0));
+                new TurtleParser().Load(graph, new StringReader(Resources.Case_1_3_0));
                 return new Schema
                 {
                     _Classes = GetClasses(graph),
@@ -98,6 +98,13 @@ namespace CT.CASE.Generator.Types
                 else
                 {
                     parentClassIri = null;
+                }
+
+                // If any parent class contains "_:autos", set it to be an owl:Thing
+                // {http://www.w3.org/2002/07/owl#Thing}
+                if (parentClassIri.ToString().Contains("_:autos"))
+                {
+                    parentClassIri = new Iri("http://www.w3.org/2002/07/owl#Thing");
                 }
 
                 string comment = caseClass.HasValue("comment") ? ((ILiteralNode)caseClass["comment"]).Value : null;
